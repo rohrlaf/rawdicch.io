@@ -1,4 +1,6 @@
-# RAW.io
+# rawdicch.io
+
+`/rɔːdɪkiəʊ/`
 
 concept playground for yet another RAW photo editor made with web technologies
 
