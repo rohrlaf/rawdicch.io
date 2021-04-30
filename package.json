@@ -1,5 +1,5 @@
 {
-  "name": "babel",
+  "name": "rawdicch.io",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
@@ -7,30 +7,25 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.15.1",
-    "@typescript-eslint/parser": "^4.15.1",
-    "eslint": "^7.20.0",
-    "eslint-config-prettier": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^5.0.9",
+    "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --format=codeframe"
+      "eslint --fix --format=codeframe"
     ],
     "*.{json,md,yaml,yml}": ["prettier --write"]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
