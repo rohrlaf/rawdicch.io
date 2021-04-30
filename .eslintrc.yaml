@@ -1,0 +1,19 @@
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'prettier'
+  - 'prettier/@typescript-eslint'
+parser: '@typescript-eslint/parser'
+plugins:
+  - '@typescript-eslint'
+  - 'import'
+  - 'react'
+  - 'react-hooks'
+  - 'jsx-a11y'
+  - 'prettier'
+rules:
+  import/no-extraneous-dependencies:
+    - 'error'
+  prettier/prettier:
+    - 'error'
