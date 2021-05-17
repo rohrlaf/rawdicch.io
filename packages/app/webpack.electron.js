@@ -6,6 +6,10 @@ module.exports = {
   // Electron Entrypoint
   entry: './src/main.ts',
   target: 'electron-main',
+  output: {
+    path: __dirname + '/dist',
+    filename: 'main.js'
+  },
   resolve: {
     alias: {
       ['@']: path.resolve(__dirname, 'src')
@@ -18,9 +22,5 @@ module.exports = {
       include: /src/,
       use: [{ loader: 'ts-loader' }]
     }]
-  },
-  output: {
-    path: __dirname + '/dist',
-    filename: 'main.js'
   }
 }
