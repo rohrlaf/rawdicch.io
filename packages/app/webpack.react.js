@@ -7,12 +7,9 @@ module.exports = {
   target: 'electron-renderer',
   output: {
     path: __dirname + '/dist',
-    filename: 'renderer.js'
+    filename: 'renderer.js',
   },
   resolve: {
-    alias: {
-      ['@']: path.resolve(__dirname, 'src')
-    },
     extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
@@ -20,27 +17,23 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         include: /src/,
-        use: [{ loader: 'ts-loader' }]
+        use: [{ loader: 'ts-loader' }],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+      template: './src/index.html',
+    }),
   ],
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist/renderer.js'),
     compress: true,
-    port: 9000
+    port: 9000,
   },
 };
