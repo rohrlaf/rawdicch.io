@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "lint": "eslint . --fix",
-    "new": "plop"
+    "new": "plop",
+    "postinstall": "husky install"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
