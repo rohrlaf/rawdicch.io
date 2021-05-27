@@ -6,11 +6,17 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "lint": "eslint . --fix",
+    "new": "plop",
+    "postinstall": "husky install"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-node": "^0.3.4",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -19,13 +25,16 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "prettier": "^2.2.1",
+    "plop": "^2.7.4",
+    "prettier": "2.3.0",
     "typescript": "^4.2.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix --format=codeframe"
     ],
-    "*.{json,md,yaml,yml}": ["prettier --write"]
+    "*.{json,md,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
