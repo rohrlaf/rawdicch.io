@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint . --fix",
+    "lint": "eslint . --fix --format=codeframe",
     "new": "plop",
     "postinstall": "husky install",
     "start:app": "yarn workspace app dev"
