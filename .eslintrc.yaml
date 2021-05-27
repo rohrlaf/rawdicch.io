@@ -3,7 +3,11 @@ extends:
   - 'plugin:@typescript-eslint/eslint-recommended'
   - 'plugin:@typescript-eslint/recommended'
   - 'prettier'
-  - 'prettier/@typescript-eslint'
+
+env:
+  amd: true
+  browser: true
+  node: true
 parser: '@typescript-eslint/parser'
 plugins:
   - '@typescript-eslint'
@@ -13,6 +17,8 @@ plugins:
   - 'jsx-a11y'
   - 'prettier'
 rules:
+  '@typescript-eslint/no-var-requires':
+    - 'off'
   import/no-extraneous-dependencies:
     - 'error'
   prettier/prettier:
