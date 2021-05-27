@@ -8,7 +8,9 @@ env:
   amd: true
   browser: true
   node: true
+
 parser: '@typescript-eslint/parser'
+
 plugins:
   - '@typescript-eslint'
   - 'import'
@@ -16,6 +18,7 @@ plugins:
   - 'react-hooks'
   - 'jsx-a11y'
   - 'prettier'
+
 rules:
   '@typescript-eslint/no-var-requires':
     - 'off'
