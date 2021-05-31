@@ -8,19 +8,21 @@ module.exports = {
   target: 'electron-main',
   output: {
     path: __dirname + '/dist',
-    filename: 'main.js'
+    filename: 'main.js',
   },
   resolve: {
     alias: {
-      ['@']: path.resolve(__dirname, 'src')
+      ['@']: path.resolve(__dirname, 'src'),
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
-    rules: [{
-      test: /\.ts$/,
-      include: /src/,
-      use: [{ loader: 'ts-loader' }]
-    }]
-  }
-}
+    rules: [
+      {
+        test: /\.ts$/,
+        include: /src/,
+        use: [{ loader: 'ts-loader' }],
+      },
+    ],
+  },
+};
