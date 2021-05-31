@@ -1,8 +1,11 @@
 import { app, BrowserWindow } from 'electron';
-import isDev from 'electron-is-dev'; // New Import
+import isDev from 'electron-is-dev';
+import installExtension, {
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer';
 
 const createWindow = (): void => {
-  const win = new BrowserWindow({
+  const window = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -10,10 +13,18 @@ const createWindow = (): void => {
     },
   });
 
-  console.log(isDev);
-  win.loadURL(
+  window.loadURL(
     isDev ? 'http://localhost:9000' : `file://${app.getAppPath()}/index.html`,
   );
 };
 
-app.on('ready', createWindow);
+app
+  .on('ready', createWindow)
+  .whenReady()
+  .then(() => {
+    if (isDev) {
+      installExtension(REACT_DEVELOPER_TOOLS)
+        .then((name: string) => console.log(`Added Extension:  ${name}`))
+        .catch((err: unknown) => console.log('An error occurred: ', err));
+    }
+  });
