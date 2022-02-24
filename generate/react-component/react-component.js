@@ -22,7 +22,7 @@ module.exports = {
       type: 'rawlist',
       name: 'package',
       message: 'Package:',
-      choices: ['components', 'client'],
+      choices: ['app'],
     },
   ],
   actions: () => [

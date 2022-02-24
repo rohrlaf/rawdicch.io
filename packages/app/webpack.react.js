@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/renderer.tsx',
   target: 'electron-renderer',
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'renderer.js',
   },
   resolve: {
@@ -32,7 +32,6 @@ module.exports = {
   ],
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'dist/renderer.js'),
     compress: true,
     port: 9000,
   },
