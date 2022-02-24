@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/main.ts',
   target: 'electron-main',
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
   resolve: {
