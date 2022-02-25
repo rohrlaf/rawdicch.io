@@ -3,6 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
+  "keywords": [
+    "Electron",
+    "React",
+    "Typescript",
+    "Webpack"
+  ],
   "workspaces": [
     "packages/*"
   ],
