@@ -4,7 +4,7 @@ module.exports = {
   // Build Mode
   mode: 'development',
   // Electron Entrypoint
-  entry: './src/electron.ts',
+  entry: './src/main.ts',
   target: 'electron-main',
   output: {
     path: path.resolve(__dirname, 'dist'),

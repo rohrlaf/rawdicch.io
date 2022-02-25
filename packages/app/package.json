@@ -2,13 +2,12 @@
   "name": "app",
   "version": "1.0.0",
   "description": "",
-  "main": "src/electron.ts",
+  "main": "src/main.ts",
   "scripts": {
-    "build": "webpack",
-    "dev": "concurrently --kill-others \"npm run react:dev\" \"npm run electron:dev\"",
-    "electron:dev": "electron .",
-    "react:dev": "webpack serve --mode=development",
-    "start": "yarn build && electron dist/main.js"
+    "build": "yarn build && electron dist/main.js",
+    "start:electron": "nodemon",
+    "start:react": "webpack serve --config ./webpack.react.js --mode=development",
+    "start": "concurrently --kill-others \"yarn start:react\" \"yarn start:electron\""
   },
   "keywords": [],
   "author": "",
