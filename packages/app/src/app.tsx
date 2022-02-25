@@ -1,11 +1,44 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+
+import type { File } from './Files/FileAccess';
+import appRuntime from './appRuntime';
 
 import PhotoGrid from './Library/PhotoGrid';
 
 const App: FunctionComponent = () => {
+  const [files, setFiles] = useState<File[]>();
+
+  useEffect(() => {
+    // appRuntime.send('app:get-files', (files: File[] = []) => {
+    //   setFiles(files);
+    // });
+    // handle file delete event
+    // appRuntime.subscribe(
+    //   'app:delete-file',
+    //   async (event, filename): Promise<unknown> => {
+    //     // TODO: remove file from list
+    //     console.log('app:delete-file', event, filename, files);
+    //     return await null;
+    //   },
+    // );
+  }, []);
+
+  const openDialog = () =>
+    appRuntime.send('app:on-fs-dialog-open', () => {
+      appRuntime.send('app:get-files', (files: File[] = []) => {
+        setFiles(files);
+      });
+    });
+
   return (
     <ul className="bg-gray-800 text-white">
-      <h1>2022-02-22</h1>
+      <button onClick={openDialog}>Click to add images</button>
+      <div>
+        {files?.map((file) => (
+          <img alt={file.name} key={file.path} src={file.path} />
+        ))}
+      </div>
+      <hr />
       <PhotoGrid />
     </ul>
   );

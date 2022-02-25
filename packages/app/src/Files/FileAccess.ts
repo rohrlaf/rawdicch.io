@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, Notification } from 'electron';
+import { BrowserWindow, dialog, ipcMain, Notification } from 'electron';
 import chokidar from 'chokidar';
 import fs from 'fs-extra';
 import open from 'open';
@@ -7,20 +7,20 @@ import * as os from 'os';
 
 // source: https://medium.com/jspoint/working-with-files-i-o-in-an-electron-application-b4d2de403f54
 
-// local dependencies
-// const notification = require('./notification');
+export type File = {
+  name: string;
+  path: string;
+};
 
 // get application directory
-const appDir = path.resolve(os.homedir(), 'electron-app-files');
+const appDir = path.resolve(os.homedir(), '.rawdicchio');
 
 // display files added notification
-export const filesAdded = (size: number) => {
-  const notif = new Notification({
+export const notifyFilesAdded = (size: number) => {
+  new Notification({
     title: 'Files added',
     body: `${size} file(s) has been successfully added.`,
-  });
-
-  notif.show();
+  }).show();
 };
 
 /****************************/
@@ -44,7 +44,7 @@ export const getFiles = () => {
 /****************************/
 
 // add files
-export const addFiles = (files: { name: string; path: string }[] = []) => {
+export const addFiles = (files: File[] = []) => {
   // ensure `appDir` exists
   fs.ensureDirSync(appDir);
 
@@ -58,7 +58,7 @@ export const addFiles = (files: { name: string; path: string }[] = []) => {
   });
 
   // display notification
-  // notification.filesAdded(files.length);
+  notifyFilesAdded(files.length);
 };
 
 // delete a file
@@ -88,4 +88,24 @@ export const watchFiles = (win: BrowserWindow) => {
   chokidar.watch(appDir).on('unlink', (filepath) => {
     win.webContents.send('app:delete-file', path.parse(filepath).base);
   });
+};
+
+export const registerFileEvents = () => {
+  ipcMain.handle('app:get-files', () => getFiles());
+  ipcMain.handle('app:on-file-add', (_, files = []) => addFiles(files));
+  ipcMain.handle('app:on-fs-dialog-open', () => {
+    const files = dialog.showOpenDialogSync({
+      properties: ['openFile', 'multiSelections'],
+    });
+
+    addFiles(
+      files?.map((filepath) => ({
+        name: path.parse(filepath).base,
+        path: filepath,
+      })),
+    );
+  });
+
+  ipcMain.on('app:on-file-delete', (_, file) => deleteFile(file.filepath));
+  ipcMain.on('app:on-file-open', (_, file) => openFile(file.filepath));
 };
