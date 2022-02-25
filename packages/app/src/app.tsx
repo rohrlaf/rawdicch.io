@@ -4,10 +4,10 @@ import PhotoGrid from './Library/PhotoGrid';
 
 const App: FunctionComponent = () => {
   return (
-    <section className="bg-red-700 text-white">
-      <h1>I am React running in Electron App!!!</h1>
+    <ul className="bg-gray-800 text-white">
+      <h1>2022-02-22</h1>
       <PhotoGrid />
-    </section>
+    </ul>
   );
 };
 
