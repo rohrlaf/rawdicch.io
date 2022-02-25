@@ -28,7 +28,7 @@ module.exports = {
   actions: () => [
     {
       type: 'add',
-      path: './packages/{{package}}/src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
+      path: './packages/{{package}}/src/{{pascalCase name}}.tsx',
       templateFile: './generate/react-component/templates/component.hbs',
     },
   ],
