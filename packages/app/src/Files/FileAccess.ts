@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain } from 'electron';
+import { BrowserWindow, ipcMain, Notification } from 'electron';
 import chokidar from 'chokidar';
 import fs from 'fs-extra';
 import open from 'open';
@@ -12,6 +12,16 @@ import * as os from 'os';
 
 // get application directory
 const appDir = path.resolve(os.homedir(), 'electron-app-files');
+
+// display files added notification
+export const filesAdded = (size: number) => {
+  const notif = new Notification({
+    title: 'Files added',
+    body: `${size} file(s) has been successfully added.`,
+  });
+
+  notif.show();
+};
 
 /****************************/
 
