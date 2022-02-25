@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 
-function createWindow() {
+const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height: 600,
     webPreferences: {
@@ -12,7 +12,7 @@ function createWindow() {
   mainWindow.loadURL('http://localhost:3000');
 
   mainWindow.webContents.openDevTools();
-}
+};
 
 app.on('ready', () => {
   createWindow();
