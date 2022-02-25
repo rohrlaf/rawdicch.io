@@ -1,31 +1,29 @@
 import { app, BrowserWindow } from 'electron';
-import isDev from 'electron-is-dev';
-import installExtension, {
-  REACT_DEVELOPER_TOOLS,
-} from 'electron-devtools-installer';
 
-const createWindow = (): void => {
-  const window = new BrowserWindow({
-    width: 800,
+function createWindow() {
+  const mainWindow = new BrowserWindow({
     height: 600,
     webPreferences: {
       nodeIntegration: true,
     },
+    width: 800,
   });
 
-  window.loadURL(
-    isDev ? 'http://localhost:3000' : `file://${app.getAppPath()}/index.html`,
-  );
-};
-app.commandLine.appendArgument('disable-gpu');
+  mainWindow.loadURL('http://localhost:3000');
 
-app
-  .on('ready', createWindow)
-  .whenReady()
-  .then(() => {
-    if (isDev) {
-      installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name: string) => console.log(`Added Extension:  ${name}`))
-        .catch((err: unknown) => console.log('An error occurred: ', err));
-    }
+  mainWindow.webContents.openDevTools();
+}
+
+app.on('ready', () => {
+  createWindow();
+
+  app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+});
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});

@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/main.ts",
   "scripts": {
-    "build": "yarn build && electron dist/main.js",
     "start:electron": "nodemon",
     "start:react": "webpack serve --config ./webpack.react.js --mode=development",
     "start": "concurrently --kill-others \"yarn start:react\" \"yarn start:electron\""
