@@ -1,9 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  // Build Mode
   mode: 'development',
-  // Electron Entrypoint
   entry: './src/main.ts',
   target: 'electron-main',
   output: {
