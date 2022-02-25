@@ -14,9 +14,10 @@ const createWindow = (): void => {
   });
 
   window.loadURL(
-    isDev ? 'http://localhost:9000' : `file://${app.getAppPath()}/index.html`,
+    isDev ? 'http://localhost:3000' : `file://${app.getAppPath()}/index.html`,
   );
 };
+app.commandLine.appendArgument('disable-gpu');
 
 app
   .on('ready', createWindow)
