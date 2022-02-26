@@ -1,8 +1,7 @@
+import { CatalogClient } from '../catalog/Catalog';
+
 export interface Rawdicchio {
-  fileAccess: {
-    getFiles: () => Promise<unknown>;
-    openDialog: () => Promise<unknown>;
-  };
+  catalog: CatalogClient;
 }
 
 declare global {

@@ -1,8 +1,7 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge } from 'electron';
+
+import { exposeCatalog } from '../catalog/Catalog';
 
 contextBridge.exposeInMainWorld('Rawdicchio', {
-  fileAccess: {
-    getFiles: () => ipcRenderer.invoke('app:get-files'),
-    openDialog: () => ipcRenderer.invoke('app:on-fs-dialog-open'),
-  },
+  catalog: exposeCatalog,
 });

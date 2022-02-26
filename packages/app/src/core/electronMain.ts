@@ -1,7 +1,7 @@
 import { app, BrowserWindow, protocol } from 'electron';
 import path from 'path';
 
-import { registerFileAccess, watchFiles } from './FileAccess/FileAccess';
+import { registerCatalog } from '../catalog/Catalog';
 
 const windowUrl = app.isPackaged
   ? `file://${path.join(__dirname, '../dist/index.html')}`
@@ -31,9 +31,7 @@ process.on('SIGINT', () => {
 
 app
   .on('ready', () => {
-    const window = createWindow();
-
-    watchFiles(window);
+    createWindow();
   })
   .whenReady()
   .then(() => {
@@ -53,4 +51,4 @@ app.on('window-all-closed', () => {
   }
 });
 
-registerFileAccess();
+registerCatalog();
