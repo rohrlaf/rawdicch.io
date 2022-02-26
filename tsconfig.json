@@ -15,5 +15,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules", "dist", "**/*.d.ts"]
+  "exclude": ["**/node_modules/*", "**/*/lib", "**/*/dist", "**/*.d.ts"]
 }
