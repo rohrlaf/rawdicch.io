@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/renderer.tsx',
+  entry: './src/core/electronRenderer.tsx',
   target: ['electron-renderer', 'web'],
   output: {
     path: path.resolve(__dirname, 'dist'),

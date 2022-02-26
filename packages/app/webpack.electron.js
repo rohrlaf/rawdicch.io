@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = [
   {
     mode: 'development',
-    entry: './src/main.ts',
+    entry: './src/core/electronMain.ts',
     target: 'electron-main',
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -28,7 +28,7 @@ module.exports = [
   },
   {
     mode: 'development',
-    entry: './src/preload.ts',
+    entry: './src/core/electronPreload.ts',
     target: 'electron-preload',
     output: {
       path: path.join(__dirname, 'dist'),

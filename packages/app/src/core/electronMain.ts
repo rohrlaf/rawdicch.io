@@ -1,7 +1,7 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
 import path from 'path';
 
-import { registerFileAccess, watchFiles } from './Files/FileAccess';
+import { registerFileAccess, watchFiles } from './FileAccess/FileAccess';
 
 const windowUrl = app.isPackaged
   ? `file://${path.join(__dirname, '../dist/index.html')}`
@@ -12,6 +12,7 @@ const createWindow = (): BrowserWindow => {
     height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      webSecurity: false,
     },
     width: 1200,
   });
@@ -28,11 +29,19 @@ process.on('SIGINT', () => {
   app.quit();
 });
 
-app.on('ready', () => {
-  const window = createWindow();
+app
+  .on('ready', () => {
+    const window = createWindow();
 
-  watchFiles(window);
-});
+    watchFiles(window);
+  })
+  .whenReady()
+  .then(() => {
+    protocol.registerFileProtocol('file', (request, callback) => {
+      const pathname = decodeURIComponent(request.url.replace('file:///', ''));
+      callback(pathname);
+    });
+  });
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) createWindow();

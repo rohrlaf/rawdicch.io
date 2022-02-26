@@ -1,11 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
+import Rawdicchio from '../core/Rawdicchio';
 
-import type { File } from './Files/FileAccess';
-import Rawdicchio from './Rawdicchio';
+import type { File } from '../core/FileAccess/FileAccess';
 
-import PhotoGrid from './Library/PhotoGrid';
+export interface PhotoGridProps {
+  label?: string;
+}
 
-const App: FunctionComponent = () => {
+const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
   const [files, setFiles] = useState<File[]>();
 
   useEffect(() => {
@@ -31,18 +33,26 @@ const App: FunctionComponent = () => {
       console.log('files', files);
     });
 
+  const image = 'align-bottom max-h-full min-w-full object-cover';
+
+  // photo grid: https://css-tricks.com/adaptive-photo-layout-with-flexbox/
   return (
-    <ul className="bg-gray-800 text-white">
+    <>
       <button onClick={openDialog}>Click to add images</button>
-      <div>
+      <h1>2022-02-22</h1>
+      <ul className="flex flex-wrap gap-0.5 list-none">
         {files?.map((file) => (
-          <img alt={file.name} key={file.path} src={file.path} />
+          <li className="flex-auto h-[33vh]" key={file.path}>
+            <img
+              alt={file.name}
+              className={image}
+              src={`file://${file.path}`}
+            />
+          </li>
         ))}
-      </div>
-      <hr />
-      <PhotoGrid />
-    </ul>
+      </ul>
+    </>
   );
 };
 
-export default App;
+export default PhotoGrid;

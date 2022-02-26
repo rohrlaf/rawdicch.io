@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
-import './renderer.css';
+import App from './App';
+import './electronRenderer.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
