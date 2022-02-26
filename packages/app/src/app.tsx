@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 
 import type { File } from './Files/FileAccess';
-import appRuntime from './appRuntime';
+import Rawdicchio from './Rawdicchio';
 
 import PhotoGrid from './Library/PhotoGrid';
 
@@ -9,9 +9,10 @@ const App: FunctionComponent = () => {
   const [files, setFiles] = useState<File[]>();
 
   useEffect(() => {
-    // appRuntime.send('app:get-files', (files: File[] = []) => {
-    //   setFiles(files);
-    // });
+    Rawdicchio.fileAccess.getFiles().then((files) => {
+      setFiles(files as File[]);
+    });
+
     // handle file delete event
     // appRuntime.subscribe(
     //   'app:delete-file',
@@ -24,10 +25,10 @@ const App: FunctionComponent = () => {
   }, []);
 
   const openDialog = () =>
-    appRuntime.send('app:on-fs-dialog-open', () => {
-      appRuntime.send('app:get-files', (files: File[] = []) => {
-        setFiles(files);
-      });
+    Rawdicchio.fileAccess.openDialog().then(async () => {
+      const files = await Rawdicchio.fileAccess.getFiles();
+      setFiles(files as File[]);
+      console.log('files', files);
     });
 
   return (

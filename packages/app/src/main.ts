@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 
-import { registerFileEvents, watchFiles } from './Files/FileAccess';
+import { registerFileAccess, watchFiles } from './Files/FileAccess';
 
 const windowUrl = app.isPackaged
   ? `file://${path.join(__dirname, '../dist/index.html')}`
@@ -11,7 +11,6 @@ const createWindow = (): BrowserWindow => {
   const mainWindow = new BrowserWindow({
     height: 800,
     webPreferences: {
-      nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     },
     width: 1200,
@@ -45,4 +44,4 @@ app.on('window-all-closed', () => {
   }
 });
 
-registerFileEvents();
+registerFileAccess();

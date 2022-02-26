@@ -1,9 +1,16 @@
 import { BrowserWindow, dialog, ipcMain, Notification } from 'electron';
-import chokidar from 'chokidar';
-import fs from 'fs-extra';
+import { watch } from 'chokidar';
+import {
+  copyFileSync,
+  ensureDirSync,
+  existsSync,
+  readdirSync,
+  removeSync,
+  statSync,
+} from 'fs-extra';
 import open from 'open';
-import * as path from 'path';
-import * as os from 'os';
+import path from 'path';
+import os from 'os';
 
 // source: https://medium.com/jspoint/working-with-files-i-o-in-an-electron-application-b4d2de403f54
 
@@ -27,11 +34,13 @@ export const notifyFilesAdded = (size: number) => {
 
 // get the list of files
 export const getFiles = () => {
-  const files = fs.readdirSync(appDir);
+  ensureDirSync(appDir);
+
+  const files = readdirSync(appDir);
 
   return files.map((filename: string) => {
     const filePath = path.resolve(appDir, filename);
-    const fileStats = fs.statSync(filePath);
+    const fileStats = statSync(filePath);
 
     return {
       name: filename,
@@ -46,14 +55,14 @@ export const getFiles = () => {
 // add files
 export const addFiles = (files: File[] = []) => {
   // ensure `appDir` exists
-  fs.ensureDirSync(appDir);
+  ensureDirSync(appDir);
 
   // copy `files` recursively (ignore duplicate file names)
   files.forEach((file) => {
     const filePath = path.resolve(appDir, file.name);
 
-    if (!fs.existsSync(filePath)) {
-      fs.copyFileSync(file.path, filePath);
+    if (!existsSync(filePath)) {
+      copyFileSync(file.path, filePath);
     }
   });
 
@@ -66,8 +75,8 @@ export const deleteFile = (filename: string) => {
   const filePath = path.resolve(appDir, filename);
 
   // remove file from the file system
-  if (fs.existsSync(filePath)) {
-    fs.removeSync(filePath);
+  if (existsSync(filePath)) {
+    removeSync(filePath);
   }
 };
 
@@ -76,7 +85,7 @@ export const openFile = (filename: string) => {
   const filePath = path.resolve(appDir, filename);
 
   // open a file using default application
-  if (fs.existsSync(filePath)) {
+  if (existsSync(filePath)) {
     open(filePath);
   }
 };
@@ -85,12 +94,12 @@ export const openFile = (filename: string) => {
 
 // watch files from the application's storage directory
 export const watchFiles = (win: BrowserWindow) => {
-  chokidar.watch(appDir).on('unlink', (filepath) => {
+  watch(appDir).on('unlink', (filepath) => {
     win.webContents.send('app:delete-file', path.parse(filepath).base);
   });
 };
 
-export const registerFileEvents = () => {
+export const registerFileAccess = () => {
   ipcMain.handle('app:get-files', () => getFiles());
   ipcMain.handle('app:on-file-add', (_, files = []) => addFiles(files));
   ipcMain.handle('app:on-fs-dialog-open', () => {

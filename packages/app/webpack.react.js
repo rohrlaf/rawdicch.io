@@ -5,19 +5,13 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: './src/renderer.tsx',
-  target: ['web', 'electron-renderer'],
-  // target: ['web', 'electron-renderer'],
+  target: ['electron-renderer', 'web'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'renderer.js',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    // fallback: {
-    //   os: require.resolve('os-browserify/browser'),
-    //   path: require.resolve('path-browserify'),
-    //   process: require.resolve('process/browser'),
-    // },
   },
   module: {
     rules: [
