@@ -16,7 +16,6 @@ const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
     Rawdicchio.catalog.openDialog().then(async () => {
       const files = await Rawdicchio.catalog.getFiles();
       setFiles(files);
-      console.log('files', files);
     });
 
   // photo grid: https://css-tricks.com/adaptive-photo-layout-with-flexbox/
@@ -31,6 +30,7 @@ const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
               alt={file}
               className="align-bottom max-h-full min-w-full object-cover"
               src={`file://${file}`}
+              title={file}
             />
           </li>
         ))}

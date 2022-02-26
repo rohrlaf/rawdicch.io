@@ -1,12 +1,5 @@
 import { dialog, ipcMain, ipcRenderer, Notification } from 'electron';
-import {
-  ensureDirSync,
-  ensureFileSync,
-  readFileSync,
-  writeFileSync,
-} from 'fs-extra';
-import os from 'os';
-import path from 'path';
+import { PrismaClient } from '@prisma/client';
 
 export interface CatalogClient {
   getFiles: () => Promise<string[]>;
@@ -20,44 +13,23 @@ export type Catalog = {
   images: string[];
 };
 
-const appDir = path.resolve(os.homedir(), '.rawdicchio');
-const catalogFile = path.resolve(appDir, 'catalog.json');
+// TODO: close DB connection
+const prisma = new PrismaClient();
 
 const addFiles = (files: string[] = []) => {
-  ensureDirSync(appDir);
-  ensureFileSync(catalogFile);
-
-  if (files?.length > 0) {
-    let catalog: Catalog = { images: [] };
-
-    try {
-      const file = readFileSync(catalogFile, 'utf8');
-      catalog = JSON.parse(file) as Catalog;
-      catalog.images = [...catalog.images, ...files];
-      writeFileSync(catalogFile, JSON.stringify(catalog));
-    } catch (error) {
-      catalog.images = files;
-      console.error('Catalog addFiles', error);
-    }
-  }
+  files?.forEach(async (file) => {
+    await prisma.photo.create({
+      data: { path: file },
+    });
+  });
 
   notifyFilesAdded(files?.length);
 };
 
 const getFiles = async () => {
-  ensureDirSync(appDir);
-  ensureFileSync(catalogFile);
+  const files = await prisma.photo.findMany();
 
-  let catalog: Catalog = { images: [] };
-
-  try {
-    const file = readFileSync(catalogFile, 'utf8');
-    catalog = JSON.parse(file) as Catalog;
-  } catch (error) {
-    console.error('Catalog getFiles', error);
-  }
-
-  return catalog.images;
+  return files?.map((file) => file.path);
 };
 
 const importFiles = () => {
@@ -74,6 +46,8 @@ const notifyFilesAdded = (size: number) => {
     body: `${size} file(s) has been successfully added.`,
   }).show();
 };
+
+// let prisma: PrismaClient;
 
 export const registerCatalog = () => {
   ipcMain.handle('catalog:get-files', getFiles);

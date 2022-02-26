@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = [
@@ -13,6 +14,7 @@ module.exports = [
     resolve: {
       alias: {
         ['@']: path.resolve(__dirname, 'src'),
+        '@prisma/client$': require.resolve('@prisma/client'),
       },
       extensions: ['.tsx', '.ts', '.js'],
     },
@@ -25,6 +27,20 @@ module.exports = [
         },
       ],
     },
+    externals: {
+      _http_common: 'commonjs2 _http_common',
+      encoding: 'commonjs2 encoding',
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, 'node_modules', '.prisma', 'client'),
+            to: path.resolve(__dirname, 'dist'),
+          },
+        ],
+      }),
+    ],
   },
   {
     mode: 'development',
@@ -37,6 +53,7 @@ module.exports = [
     resolve: {
       alias: {
         ['@']: path.resolve(__dirname, 'src'),
+        '@prisma/client$': require.resolve('@prisma/client'),
       },
       extensions: ['.tsx', '.ts', '.js'],
     },
@@ -48,6 +65,10 @@ module.exports = [
           use: [{ loader: 'ts-loader' }],
         },
       ],
+    },
+    externals: {
+      _http_common: 'commonjs2 _http_common',
+      encoding: 'commonjs2 encoding',
     },
   },
 ];
