@@ -37,7 +37,7 @@ const addFiles = (files: string[] = []) => {
       writeFileSync(catalogFile, JSON.stringify(catalog));
     } catch (error) {
       catalog.images = files;
-      console.log('Catalog getFiles', error);
+      console.error('Catalog addFiles', error);
     }
   }
 
@@ -54,7 +54,7 @@ const getFiles = async () => {
     const file = readFileSync(catalogFile, 'utf8');
     catalog = JSON.parse(file) as Catalog;
   } catch (error) {
-    console.log('Catalog getFiles', error);
+    console.error('Catalog getFiles', error);
   }
 
   return catalog.images;
