@@ -55,6 +55,13 @@ Now, you can start the app:
 # install dependencies
 yarn
 
+# create .env file (see .env.sample)
+touch packages/app/.env
+nano packages/app/.env
+
+# create development database (also: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgres)
+npx prisma migrate dev --name init
+
 # start up the application
 yarn start:app
 
