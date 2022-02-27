@@ -5,7 +5,10 @@
   "license": "MIT",
   "keywords": [
     "Electron",
+    "Nodemon",
+    "Prisma",
     "React",
+    "Tailwind CSS",
     "Typescript",
     "Webpack"
   ],
