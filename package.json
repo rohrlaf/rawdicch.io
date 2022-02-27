@@ -2,7 +2,7 @@
   "name": "rawdicch.io",
   "version": "0.0.1",
   "private": true,
-  "license": "MIT",
+  "license": "GNU GPLv3",
   "keywords": [
     "Electron",
     "Nodemon",
