@@ -1,5 +1,6 @@
 import { dialog, ipcMain, ipcRenderer, Notification } from 'electron';
 import { PrismaClient } from '@prisma/client';
+import path from 'path';
 
 export interface CatalogClient {
   getFiles: () => Promise<string[]>;
@@ -18,8 +19,16 @@ const prisma = new PrismaClient();
 
 const addFiles = (files: string[] = []) => {
   files?.forEach(async (file) => {
-    await prisma.photo.create({
-      data: { path: file },
+    await prisma.photos.create({
+      data: {
+        created_at: new Date(),
+        filename: path.basename(file),
+        filetype: path.extname(file),
+        height: 0,
+        imported_at: new Date(),
+        path: file,
+        width: 0,
+      },
     });
   });
 
@@ -27,7 +36,7 @@ const addFiles = (files: string[] = []) => {
 };
 
 const getFiles = async () => {
-  const files = await prisma.photo.findMany();
+  const files = await prisma.photos.findMany();
 
   return files?.map((file) => file.path);
 };

@@ -9,8 +9,8 @@ CREATE TABLE "Photos" (
     "created_at" DATETIME NOT NULL,
     "updated_at" DATETIME,
     "imported_at" DATETIME NOT NULL,
-    "flag" TEXT NOT NULL,
-    "trashed" TEXT NOT NULL
+    "flag" TEXT,
+    "trashed" BOOLEAN
 );
 
 -- CreateIndex

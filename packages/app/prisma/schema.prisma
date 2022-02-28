@@ -20,6 +20,6 @@ model Photos {
   created_at  DateTime
   updated_at  DateTime?
   imported_at DateTime
-  flag        String
-  trashed     String
+  flag        String?
+  trashed     Boolean?
 }
