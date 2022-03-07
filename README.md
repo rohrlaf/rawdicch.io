@@ -62,8 +62,8 @@ nano packages/app/.env
 # create development database (also: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgres)
 npx prisma migrate dev --name init
 
-# start up the application
-yarn start:app
+# start up the Electron application
+yarn start
 
 # create a new component
 yarn new
