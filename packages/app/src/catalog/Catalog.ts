@@ -32,7 +32,7 @@ const addFiles = (files: string[] = []) => {
     });
   });
 
-  notifyFilesAdded(files?.length);
+  files?.length > 0 && notifyFilesAdded(files?.length);
 };
 
 const getFiles = async () => {
