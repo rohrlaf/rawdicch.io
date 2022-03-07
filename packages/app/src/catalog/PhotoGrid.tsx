@@ -2,10 +2,10 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import Rawdicchio from '../core/Rawdicchio';
 
 export interface PhotoGridProps {
-  label?: string;
+  className?: string;
 }
 
-const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
+const PhotoGrid: FunctionComponent<PhotoGridProps> = ({ className }) => {
   const [files, setFiles] = useState<string[]>();
 
   useEffect(() => {
@@ -20,22 +20,22 @@ const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
 
   // photo grid: https://css-tricks.com/adaptive-photo-layout-with-flexbox/
   return (
-    <>
+    <div className={className}>
       <button onClick={openDialog}>Click to add images</button>
       <h1>2022-02-22</h1>
-      <ul className="flex flex-wrap gap-0.5 list-none">
+      <div className="flex flex-wrap gap-1 list-none overflow-y-auto">
         {files?.map((file, index) => (
-          <li className="flex-auto h-[33vh]" key={`${index}-${file}`}>
+          <li className="flex-auto h-72 max-w-[50%]" key={`${index}-${file}`}>
             <img
               alt={file}
-              className="align-bottom max-h-full min-w-full object-cover"
+              className="align-bottom max-h-full min-h-full min-w-full object-cover"
               src={`file://${file}`}
               title={file}
             />
           </li>
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 };
 
