@@ -63,7 +63,7 @@ nano packages/app/.env
 npx prisma migrate dev --name init
 
 # start up the application
-yarn start:app
+yarn start
 
 # create a new component
 yarn new
