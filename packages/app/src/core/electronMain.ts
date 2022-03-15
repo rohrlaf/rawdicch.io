@@ -1,4 +1,7 @@
 import { app, BrowserWindow, protocol } from 'electron';
+import installExtension, {
+  REACT_DEVELOPER_TOOLS,
+} from 'electron-devtools-installer';
 import path from 'path';
 
 import { registerCatalog } from '../catalog/Catalog';
@@ -12,6 +15,7 @@ const createWindow = (): BrowserWindow => {
     height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      // consider fixing: https://www.electronjs.org/docs/latest/tutorial/security#6-do-not-disable-websecurity
       webSecurity: false,
     },
     width: 1200,
@@ -35,6 +39,8 @@ app
   })
   .whenReady()
   .then(() => {
+    !app.isPackaged && installExtension(REACT_DEVELOPER_TOOLS);
+
     protocol.registerFileProtocol('file', (request, callback) => {
       const pathname = decodeURIComponent(request.url.replace('file:///', ''));
       callback(pathname);

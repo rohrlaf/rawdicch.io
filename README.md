@@ -28,15 +28,15 @@ concept playground for yet another RAW photo library and editor made with web te
 
 ### Inspiration
 
-| Editor                                          | Notes                                                                                                 |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [Capture One](https://www.captureone.com/de)    | + great user interface<br>+ license without subscription available                                    |
-| [Darktable](https://www.darktable.org/)         | + powerful editing modules<br>+ xmp sidecar file <br>- steep learning curve (filmic)                  |
-| [FastRawViewer](https://www.fastrawviewer.com/) | + histogram based on RAW edits                                                                        |
-| [Lightroom CC](https://lightroom.adobe.com/)    | + great user interface<br>+ powerful editing algorithms<br>- expensive subscriptions for personal use |
-| [Luminar](https://skylum.com/luminar)           | + great user interface<br>- slow processing speed<br>- broken gallery thumbnails                      |
-| [Picturama](https://picturama.github.io/)       | + built with [Electron](https://www.electronjs.org/)<br>+ fast and easy to use                        |
-| [RawTherapee](https://rawtherapee.com/)         | - steep learning curve                                                                                |
+| Editor                                                                                       | Notes                                                                                                 |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [Capture One](https://www.captureone.com/de)                                                 | + great user interface<br>+ license without subscription available                                    |
+| [Darktable](https://www.darktable.org/) ([Repo](https://github.com/darktable-org/darktable)) | + powerful editing modules<br>+ xmp sidecar file <br>- steep learning curve (filmic)                  |
+| [FastRawViewer](https://www.fastrawviewer.com/)                                              | + histogram based on RAW edits                                                                        |
+| [Lightroom CC](https://lightroom.adobe.com/)                                                 | + great user interface<br>+ powerful editing algorithms<br>- expensive subscriptions for personal use |
+| [Luminar](https://skylum.com/luminar)                                                        | + great user interface<br>- slow processing speed<br>- broken gallery thumbnails                      |
+| [Picturama](https://picturama.github.io/) ([Repo](https://github.com/picturama/picturama))   | + built with [Electron](https://www.electronjs.org/)<br>+ fast and easy to use                        |
+| [RawTherapee](https://rawtherapee.com/) ([Repo](https://github.com/Beep6581/RawTherapee))    | - steep learning curve                                                                                |
 
 ## Development
 
@@ -62,8 +62,8 @@ nano packages/app/.env
 # create development database (also: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgres)
 npx prisma migrate dev --name init
 
-# start up the application
-yarn start:app
+# start up the Electron application
+yarn start
 
 # create a new component
 yarn new

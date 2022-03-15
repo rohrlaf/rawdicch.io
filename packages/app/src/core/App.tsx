@@ -7,11 +7,11 @@ import PhotoGrid from '../catalog/PhotoGrid';
 
 const App: FunctionComponent = () => {
   return (
-    <ul className="bg-gray-800 text-white">
-      <h1>Photo catalog</h1>
-      <hr />
-      <PhotoGrid />
-    </ul>
+    <div className="bg-gray-800 font-sans gap-2 grid grid-cols-6 h-screen text-white">
+      <div>sidebar right</div>
+      <PhotoGrid className="col-span-4" />
+      <div>sidebar right</div>
+    </div>
   );
 };
 
