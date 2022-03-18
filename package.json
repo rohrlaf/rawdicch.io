@@ -18,9 +18,9 @@
   "scripts": {
     "lint": "eslint . --fix --format=codeframe",
     "new": "plop",
-    "postinstall": "yarn postinstall:husky ; yarn postinstall:workspaces",
+    "postinstall": "yarn postinstall:husky && yarn postinstall:workspace",
     "postinstall:husky": "husky install",
-    "postinstall:workspaces": "yarn workspaces foreach run postinstall",
+    "postinstall:workspace": "yarn workspace app postinstall",
     "start": "yarn workspace app start"
   },
   "devDependencies": {
