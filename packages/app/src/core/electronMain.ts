@@ -1,4 +1,4 @@
-import { app, BrowserWindow, protocol } from 'electron';
+import { app, BrowserWindow, protocol, session } from 'electron';
 import path from 'path';
 
 import { registerCatalog } from '../catalog/Catalog';
@@ -12,7 +12,7 @@ const createWindow = (): BrowserWindow => {
     height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      webSecurity: false,
+      // webSecurity: false,
     },
     width: 1200,
   });
@@ -31,6 +31,19 @@ process.on('SIGINT', () => {
 
 app
   .on('ready', () => {
+    if (!app.isPackaged) {
+      session.defaultSession.webRequest.onHeadersReceived(
+        (details, callback) => {
+          callback({
+            responseHeaders: {
+              ...details.responseHeaders,
+              'Content-Security-Policy': ["default-src 'self'"],
+            },
+          });
+        },
+      );
+    }
+
     createWindow();
   })
   .whenReady()
