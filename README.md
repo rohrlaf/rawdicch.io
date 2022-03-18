@@ -42,14 +42,14 @@ concept playground for yet another RAW photo library and editor made with web te
 
 ### Getting started
 
-Before starting into development, please check for the following dependencies:
+Before starting into development, please check for the following **requirements**:
 
 ```sh
-asdf     # (optional) version manager for node and yarn (see .tool-versions)
+asdf     # (optional) version manager for node and yarn (refer to .tool-versions)
 VSCode   # (optional) editor SDKs included for Yarn
 ```
 
-Now, you can start the app:
+If you start for the first time, please follow these instructions:
 
 ```sh
 # install dependencies
@@ -57,12 +57,15 @@ yarn
 
 # create .env file (see .env.sample)
 touch packages/app/.env
-nano packages/app/.env
 
 # create development database (also: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgres)
-npx prisma migrate dev --name init
+yarn dlx prisma migrate dev --name init
+```
 
-# start up the application
+Now, you can start developing the app:
+
+```sh
+# start up the electron application
 yarn start
 
 # create a new component
