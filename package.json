@@ -20,7 +20,7 @@
     "lint": "eslint . --fix --format=codeframe",
     "new": "plop",
     "postinstall": "husky install",
-    "start:app": "yarn workspace app start"
+    "start": "yarn workspace app start"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.29.0",
