@@ -1,5 +1,6 @@
-const generateComponent = require('./generate/react-component/react-component');
+import reactComponent from './generate/react-component/react-component.js';
 
-module.exports = function (plop) {
-  plop.setGenerator('react-component', generateComponent);
-};
+export default function (plop) {
+  // create your generators here
+  plop.setGenerator('react-component', reactComponent);
+}
