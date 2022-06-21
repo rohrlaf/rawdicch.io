@@ -38,7 +38,7 @@ const addFiles = (files: string[] = []) => {
 const getFiles = async () => {
   const files = await prisma.photos.findMany();
 
-  return files?.map((file) => file.path);
+  return files?.map((file: { path: string }) => file.path);
 };
 
 const importFiles = () => {
