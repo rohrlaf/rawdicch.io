@@ -1,4 +1,4 @@
-module.exports = {
+const reactGenerator = {
   description: 'Generates new React component',
   prompts: [
     {
@@ -33,3 +33,5 @@ module.exports = {
     },
   ],
 };
+
+export default reactGenerator;
