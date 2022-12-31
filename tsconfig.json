@@ -10,10 +10,14 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
+    "noImplicitAny": true,
+    "paths": {
+      "*": ["node_modules/*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
     "target": "esnext"
-  },
-  "exclude": ["**/node_modules/*", "**/*/lib", "**/*/dist", "**/*.d.ts"]
+  }
 }
