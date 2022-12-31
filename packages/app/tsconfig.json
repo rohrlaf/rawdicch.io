@@ -3,7 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "composite": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   },
   "include": ["src/**/*"]
 }
