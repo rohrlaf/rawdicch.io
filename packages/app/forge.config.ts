@@ -12,6 +12,7 @@ const config: ForgeConfig = {
   packagerConfig: {
     /** @see https://github.com/prisma/prisma/issues/12627#issuecomment-1248289564 */
     extraResource: ['../../node_modules/.prisma', './prisma/dev.db'],
+    // TODO: test asar config https://www.electronforge.io/config/plugins/auto-unpack-natives
   },
   rebuildConfig: {},
   makers: [
