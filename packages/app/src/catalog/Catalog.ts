@@ -4,7 +4,7 @@ import path from 'path';
 
 export interface CatalogClient {
   getFiles: () => Promise<string[]>;
-  openDialog: () => Promise<unknown>;
+  openDialog: () => Promise<void>;
 }
 
 export type Catalog = {
