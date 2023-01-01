@@ -1,4 +1,3 @@
-import path from 'path';
 import type { Configuration } from 'webpack';
 
 import { rules } from './webpack.rules';
@@ -14,10 +13,6 @@ export const mainConfig: Configuration = {
     rules,
   },
   resolve: {
-    alias: {
-      ['@']: path.resolve(__dirname, 'src'),
-      '@prisma/client$': require.resolve('@prisma/client'),
-    },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
   },
   externals: {

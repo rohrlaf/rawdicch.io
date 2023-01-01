@@ -9,7 +9,10 @@ import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
-  packagerConfig: {},
+  packagerConfig: {
+    /** @see https://github.com/prisma/prisma/issues/12627#issuecomment-1248289564 */
+    extraResource: ['../../node_modules/.prisma', './prisma/dev.db'],
+  },
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({}),

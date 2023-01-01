@@ -56,8 +56,6 @@ const notifyFilesAdded = (size: number) => {
   }).show();
 };
 
-// let prisma: PrismaClient;
-
 export const registerCatalog = () => {
   ipcMain.handle('catalog:get-files', getFiles);
   ipcMain.handle('catalog:import-files-dialog', importFiles);
