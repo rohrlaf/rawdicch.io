@@ -48,5 +48,11 @@
       "prettier --write"
     ]
   },
+  "packagerConfig": {
+    "extraResource": [
+      "./node_modules/.prisma",
+      "./prisma/dev.db"
+    ]
+  },
   "packageManager": "yarn@3.3.1"
 }
