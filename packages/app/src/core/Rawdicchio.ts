@@ -1,6 +1,6 @@
 import { CatalogClient } from '../catalog/Catalog';
 
-export interface Rawdicchio {
+interface Rawdicchio {
   catalog: CatalogClient;
 }
 
@@ -9,5 +9,7 @@ declare global {
     Rawdicchio: Rawdicchio;
   }
 }
+
+export type { Rawdicchio };
 
 export default window.Rawdicchio;

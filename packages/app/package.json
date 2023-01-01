@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": ".webpack/main",
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "scripts": {
     "view:db": "prisma studio",
     "start": "electron-forge start",

@@ -19,23 +19,24 @@ const prisma = new PrismaClient();
 
 const addFiles = (files: string[] = []) => {
   files?.forEach(async (file) => {
-    await prisma.photos.create({
-      data: {
-        created_at: new Date(),
-        filename: path.basename(file),
-        filetype: path.extname(file),
-        height: 0,
-        imported_at: new Date(),
-        path: file,
-        width: 0,
-      },
-    });
+    // await prisma.photos.create({
+    //   data: {
+    //     created_at: new Date(),
+    //     filename: path.basename(file),
+    //     filetype: path.extname(file),
+    //     height: 0,
+    //     imported_at: new Date(),
+    //     path: file,
+    //     width: 0,
+    //   },
+    // });
   });
 
   notifyFilesAdded(files?.length);
 };
 
 const getFiles = async () => {
+  // const files = [{ path: 'test' }];
   const files = await prisma.photos.findMany();
 
   return files?.map((file: { path: string }) => file.path);

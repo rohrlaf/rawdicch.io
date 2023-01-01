@@ -11,8 +11,8 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     /** @see https://github.com/prisma/prisma/issues/12627#issuecomment-1248289564 */
-    extraResource: ['../../node_modules/.prisma', './prisma/dev.db'],
-    // TODO: test asar config https://www.electronforge.io/config/plugins/auto-unpack-natives
+    // do not hoist Prisma dependencies to root with Yarn
+    extraResource: ['./node_modules/.prisma', './prisma/dev.db'],
   },
   rebuildConfig: {},
   makers: [
@@ -24,12 +24,15 @@ const config: ForgeConfig = {
   plugins: [
     new WebpackPlugin({
       mainConfig,
+      /** @see https://csplite.com/csp233/ */
+      // devContentSecurityPolicy:
+      //   "default-src 'self' 'unsafe-inline' data:; script-src 'self' 'unsafe-eval'",
       renderer: {
         config: rendererConfig,
         entryPoints: [
           {
             html: './src/index.html',
-            js: './src/renderer.ts',
+            js: './src/renderer.tsx',
             name: 'main_window',
             preload: {
               js: './src/preload.ts',

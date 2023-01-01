@@ -38,6 +38,16 @@ app
       const pathname = decodeURIComponent(request.url.replace('file:///', ''));
       callback(pathname);
     });
+
+    /** @see https://www.electronjs.org/docs/latest/tutorial/security#7-define-a-content-security-policy */
+    // session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+    //   callback({
+    //     responseHeaders: {
+    //       ...details.responseHeaders,
+    //       'Content-Security-Policy': ["default-src 'self'"],
+    //     },
+    //   });
+    // });
   });
 
 app.on('activate', () => {

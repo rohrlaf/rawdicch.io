@@ -1,19 +1,20 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line import/no-named-as-default
 import Rawdicchio from '../core/Rawdicchio';
 
 export interface PhotoGridProps {
   label?: string;
 }
 
-const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
+function PhotoGrid({ label }: PhotoGridProps) {
   const [files, setFiles] = useState<string[]>();
 
   useEffect(() => {
-    Rawdicchio.catalog.getFiles().then((files) => setFiles(files));
+    Rawdicchio?.catalog?.getFiles().then((files) => setFiles(files));
   }, []);
 
   const openDialog = () =>
-    Rawdicchio.catalog.openDialog().then(async () => {
+    Rawdicchio?.catalog?.openDialog().then(async () => {
       const files = await Rawdicchio.catalog.getFiles();
       setFiles(files);
     });
@@ -37,6 +38,6 @@ const PhotoGrid: FunctionComponent<PhotoGridProps> = () => {
       </ul>
     </>
   );
-};
+}
 
 export default PhotoGrid;
