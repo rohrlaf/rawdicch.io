@@ -2,7 +2,6 @@
   "name": "rawdicch.io",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "license": "GNU GPLv3",
   "keywords": [
     "Electron",
@@ -29,17 +28,17 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-formatter-codeframe": "^7.32.1",
     "eslint-import-resolver-node": "^0.3.6",
-    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.2",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "plop": "^3.1.1",
-    "prettier": "2.7.1",
-    "typescript": "^4.7.4"
+    "prettier": "2.8.1",
+    "typescript": "~4.9.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

@@ -76,10 +76,8 @@ As a result, you should see a native [Electron](https://www.electronjs.org/) win
 This is an incomplete list of the current tech stack:
 
 - [**Electron**](https://www.electronjs.org/) (build native applications from web technologies)
-- [**Nodemon**](https://nodemon.io/) (automatically reload on configuration changes)
 - [**Plop**](https://plopjs.com/) (code consistency for new components)
 - [**Prisma**](https://www.prisma.io/) (handling of the library)
 - [**React**](https://reactjs.org/)
 - [**Tailwind CSS**](https://tailwindcss.com/) (utility-first styling within small components)
 - [**TypeScript**](https://www.typescriptlang.org/)
-- [**Webpack**](https://webpack.js.org/)
